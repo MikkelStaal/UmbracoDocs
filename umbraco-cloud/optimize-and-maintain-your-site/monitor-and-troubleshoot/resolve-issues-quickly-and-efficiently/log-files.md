@@ -3,6 +3,7 @@
 You can access the different types of log files on Umbraco Cloud or through [Kudu](../power-tools/). You have access to different types of logs:
 
 * Umbraco logs
+* Persisting logs externally
 * Deploy logs
 * Environment logs
 * Site Extension logs
@@ -36,6 +37,16 @@ To access logs through Kudu, see [Power tools (Kudu)](../power-tools/) article.
 ## Umbraco logs
 
 Umbraco logs on Cloud work almost the same as on a [normal installation](https://docs.umbraco.com/umbraco-cms/fundamentals/code/debugging/logging), they are still found in the `~/site/wwwroot/umbraco/Logs/` folder. Umbraco Deploy also writes to the standard log files with events and errors. If there is an extraction error and you can't find any issues in your Umbraco log, try the Deploy log listed below.
+
+## Persisting Logs Externally
+
+Umbraco Cloud runs on Azure App Services, and in some cases - such as when a project is migrated to dedicated hosting - the project is moved to a new Web App instance with its own filesystem. When this happens, any logs stored on the previous instance's filesystem (accessible via Kudu) are no longer available, as they were tied to that specific infrastructure.
+
+To ensure historical logs are preserved through any future infrastructure changes, you can configure an additional Serilog sink to write your structured logs to an external store.
+
+A full list of available Serilog sinks can be found at the [Serilog Provided Sinks](https://github.com/serilog/serilog/wiki/provided-sinks) page on GitHub.
+
+Once an external sink is configured, your logs will persist independently of any changes to the underlying infrastructure.
 
 ## Deploy logs
 
