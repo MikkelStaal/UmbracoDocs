@@ -71,6 +71,10 @@ This mode disables both in-memory ModelsBuilder generation (see [Development mod
 * `Umbraco:CMS:Global:UseHttps` is enabled;
 * `Umbraco:CMS:ModelsBuilder:ModelsMode` is set to `Nothing`.
 
+{% hint style="info" %} 
+If the site is hosted on Umbraco Cloud, changing the above configuration will have no effect. The site will always use the URL set in the umbraco-cloud.json file, which can not be changed. 
+{% endhint %}
+
 {% hint style="info" %}
 To compile your views at build/publish time, remove the `<RazorCompileOnBuild>` and `<RazorCompileOnPublish>` properties from your project file (see the [Development mode](runtime-modes.md#development-mode) section). If you don't, Umbraco can't find the templates and will return 404 (Page Not Found) errors.
 {% endhint %}
